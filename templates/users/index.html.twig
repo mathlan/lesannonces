@@ -1,0 +1,51 @@
+{% extends 'users.html.twig' %}
+
+{% block title %}Profil de {{ app.user.firstname }}{% endblock %}
+
+{% block body %}
+<div class="container">
+    <div class="row">
+        <div class=".col-md-3 .ml-md-auto padding-main">
+            <table class="table">
+            <thead class="thead-dark">
+                <tr>
+                <th scope="col">#</th>
+                <th scope="col">Nom</th>
+                <th scope="col">Prénom</th>
+                <th scope="col">Email</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                <th scope="row">1</th>
+                <td>{{ app.user.name }}</td>
+                <td>{{ app.user.firstname }}</td>
+                <td>{{ app.user.email }}</td>
+                </tr>
+            </tbody>
+            </table>
+
+
+            {% for message in app.flashes('message') %}
+                <div class="alert alert-info" role="alert">
+                {{message}}
+                </div>
+            {% endfor %}
+
+            <div class="text-center">
+                <a href="{{ path('users_profile_modify') }}" class="btn btn-primary margin-height-btn margin-right-btn">Modifier le profil</a>
+                <a href="{{ path('users_pass_modify') }}" class="btn btn-primary margin-height-btn margin-right-btn">Modifier le mot de passe</a>
+
+                <h1>Annonces de {{ app.user.firstname }} {{ app.user.name }} ({{ app.user.annonces|length }})</h1>
+
+                {% for annonce in app.user.annonces %}
+                <div class="row">
+                    <div class="offset-md-3 col-md-3">Titre:</div>
+                    <div class="col-md-3" >{{ annonce.title }}</div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

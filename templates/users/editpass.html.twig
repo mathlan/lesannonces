@@ -1,0 +1,32 @@
+{% extends 'users.html.twig' %}
+
+{% block title %}Modification du mot de passe de {{ app.user.firstname }}{% endblock %}
+
+{% block body %}
+<div class="container">
+    <div class="row">
+        <div class=".col-md-3 .ml-md-auto padding-main padding-top-text">
+
+            <h1>Modification du mot de passe de {{ app.user.firstname }} {{ app.user.name }}</h1>
+            <form method="post">
+                <div class="form-group">
+                    <label for="pass" class="form-label mt-4">Mot de passe</label>
+                    <input type="password" class="form-control" id="pass" name="pass" placeholder="Mot de passe">
+                </div>
+                <div class="form-group">
+                    <label for="pass2" class="form-label mt-4">Confirmer le mot de passe</label>
+                    <input type="password" class="form-control" id="pass2" name="pass2" placeholder="Mot de passe">
+                </div>
+                <div class="text-center">
+                <button class="btn btn-primary margin-height-btn">Valider</button>
+                </div>
+        </div>
+
+            {% for message in app.flashes('error') %}
+                <div class="alert alert-info" role="alert">
+                {{message}}
+                </div>
+            {% endfor %}
+    </div>
+</div>
+{% endblock %}

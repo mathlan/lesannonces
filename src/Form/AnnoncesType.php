@@ -8,10 +8,9 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
-use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
-
-
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use FOS\CKEditorBundle\Form\Type\CKEditorType;
 
 class AnnoncesType extends AbstractType
 {
@@ -19,10 +18,11 @@ class AnnoncesType extends AbstractType
     {
         $builder
             ->add('title', TextType::class)
-            ->add('content', TextareaType::class)
+            ->add('content', CKEditorType::class)
             ->add('categories', EntityType::class, [
                 'class' => Categories::class
             ])
+            ->add('Valider', SubmitType::class)
         ;
     }
 
